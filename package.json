@@ -8,6 +8,10 @@
     "compile": "./node_modules/.bin/babel src/ -d dist/",
     "prepublish": "npm run-script compile"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sungwoncho/react-cntdwn.git"
+  },
   "keywords": [
     "countdown",
     "react",
