@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
+import prettyMs from 'pretty-ms';
 
 const NOT_STARTED = 1;
 const STARTED = 2;
@@ -48,13 +49,17 @@ export default class Countdown extends Component {
     }
   }
 
+  renderRemainingTime() {
+    return prettyMs(this.state.remainingTime, {secDecimalDigits: 0});
+  }
+
   render() {
     if (this.state.status === NOT_STARTED) {
       return <span></span>;
     }
     return (
       <div>
-        {this.state.remainingTime}
+        {this.renderRemainingTime()}
       </div>
     );
   }

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "moment": "^2.10.6",
+    "pretty-ms": "^2.1.0",
     "react": "^0.14.3"
   }
 }
