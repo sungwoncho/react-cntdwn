@@ -37,6 +37,7 @@ The time in millisecond until the countdown begins.
 
 * type: `Number`
 * optional
+* default: `0`
 
 ### [interval]
 
@@ -44,6 +45,7 @@ The interval in millisecond for each tick in countdown.
 
 * type: `Number`
 * optional
+* default: `1000`
 
 ### [onFinished]
 
