@@ -23,6 +23,7 @@
     "babel-preset-react": "^6.3.13"
   },
   "dependencies": {
+    "moment": "^2.10.6",
     "react": "^0.14.3"
   }
 }
