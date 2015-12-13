@@ -13,10 +13,10 @@
     "url": "git+https://github.com/sungwoncho/react-cntdwn.git"
   },
   "keywords": [
+    "react-component",
+    "timer",
     "countdown",
-    "react",
-    "component",
-    "timer"
+    "react"
   ],
   "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
   "license": "MIT",
