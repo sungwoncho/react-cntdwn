@@ -24,9 +24,12 @@
     "babel": "^6.3.13",
     "babel-cli": "^6.3.17",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13"
+    "babel-preset-react": "^6.3.13",
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
   },
   "dependencies": {
+    "millisec": "^0.2.0",
     "moment": "^2.10.6",
     "pretty-ms": "^2.1.0",
     "react": "^0.14.3"

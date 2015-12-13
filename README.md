@@ -31,6 +31,31 @@ The datetime to count until.
 * type: `Date`
 * required
 
+### [format]
+
+The format used to display the remaining time. It is an object with keys `day`,
+`hour`, `minute`, and `second`.
+
+* type: `Object`
+* optional
+* default:
+
+```js
+{
+  hour: 'HH',
+  minute: 'MM',
+  second: 'SS'
+}
+```
+
+The component uses [millisec](https://github.com/sungwoncho/millisec) npm
+module to convert the remaining time into human a readable format. You can use
+any format type supported by `millisec` to customize the output to a great
+degree.
+
+Find all available formats [here](https://github.com/sungwoncho/millisec#formatoutput).
+
+
 ### [startDelay]
 
 The time in millisecond until the countdown begins.

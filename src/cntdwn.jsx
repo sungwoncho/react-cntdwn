@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
-import prettyMs from 'pretty-ms';
+import milliSec from 'millisec';
 
 const NOT_STARTED = 1;
 const STARTED = 2;
@@ -50,7 +50,42 @@ export default class Countdown extends Component {
   }
 
   renderRemainingTime() {
-    return prettyMs(this.state.remainingTime, {secDecimalDigits: 0});
+    let time = milliSec(this.state.remainingTime);
+    let html = [];
+
+    if (this.props.format.day) {
+      html.push(
+        <span className="react-cntdwn-day" key="day">
+          {time.format(this.props.format.day)}&nbsp;
+        </span>
+      );
+    }
+
+    if (this.props.format.hour) {
+      html.push(
+        <span className="react-cntdwn-hour" key="hour">
+          {time.format(this.props.format.hour)}&nbsp;
+        </span>
+      );
+    }
+
+    if (this.props.format.minute) {
+      html.push(
+        <span className="react-cntdwn-minute" key="minute">
+          {time.format(this.props.format.minute)}&nbsp;
+        </span>
+      );
+    }
+
+    if (this.props.format.second) {
+      html.push(
+        <span className="react-cntdwn-second" key="second">
+          {time.format(this.props.format.second)}
+        </span>
+      );
+    }
+
+    return html;
   }
 
   render() {
@@ -58,7 +93,7 @@ export default class Countdown extends Component {
       return <span></span>;
     }
     return (
-      <div>
+      <div className="react-cntdwn-timer">
         {this.renderRemainingTime()}
       </div>
     );
@@ -69,12 +104,18 @@ Countdown.propTypes = {
   targetDate: PropTypes.instanceOf(Date).isRequired,
   interval: PropTypes.number,
   startDelay: PropTypes.number,
-  onFinished: PropTypes.func
+  onFinished: PropTypes.func,
+  format: PropTypes.object
 };
 
 Countdown.defaultProps = {
   interval: 1000,
-  startDelay: 0
+  startDelay: 0,
+  format: {
+    hour: 'HH',
+    minute: 'MM',
+    second: 'SS'
+  }
 };
 
 module.exports = Countdown;
