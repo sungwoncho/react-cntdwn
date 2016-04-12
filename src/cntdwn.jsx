@@ -70,6 +70,9 @@ export default class Countdown extends Component {
 
     if (this.props.format.day) {
       let days = time.format(this.props.format.day)
+      if (this.props.leadingZero) {
+        days = this.addLeadingZero(days)
+      }
       html.push(
         <span className="react-cntdwn-day" key="day">
           {days}&nbsp;
@@ -79,6 +82,9 @@ export default class Countdown extends Component {
 
     if (this.props.format.hour) {
       let hours = time.format(this.props.format.hour)
+      if (this.props.leadingZero) {
+        hours = this.addLeadingZero(hours)
+      }
       html.push(
         <span className="react-cntdwn-hour" key="hour">
           {hours}{timeSeparator}
@@ -88,6 +94,9 @@ export default class Countdown extends Component {
 
     if (this.props.format.minute) {
       let minutes = time.format(this.props.format.minute)
+      if (this.props.leadingZero) {
+        minutes = this.addLeadingZero(minutes)
+      }
       html.push(
         <span className="react-cntdwn-minute" key="minute">
           {minutes}{timeSeparator}
@@ -97,6 +106,9 @@ export default class Countdown extends Component {
 
     if (this.props.format.second) {
       let seconds = time.format(this.props.format.second)
+      if (this.props.leadingZero) {
+        seconds = this.addLeadingZero(seconds)
+      }
       html.push(
         <span className="react-cntdwn-second" key="second">
           {seconds}
