@@ -96,7 +96,7 @@ export default class Countdown extends Component {
     }
 
     if (this.props.format.second) {
-      lets seconds = time.format(this.props.format.second)
+      let seconds = time.format(this.props.format.second)
       html.push(
         <span className="react-cntdwn-second" key="second">
           {seconds}
