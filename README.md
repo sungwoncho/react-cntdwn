@@ -19,6 +19,8 @@ var handleFinish = function () {
 <Countdown targetDate={new Date('August 29, 1997')}
            startDelay={2000}
            interval={1000}
+           timeSeparator={':'}
+           leadingZero
            onFinished={handleFinish} />
 ```
 
@@ -78,6 +80,24 @@ The callback function to be called when the countdown ends.
 
 * type: `Function`
 * optional
+
+### [timeSeparator]
+
+The string used to separate the different parts of the time
+
+* type: `String`
+* optional
+* default: `&nbsp;`
+ 
+### [leadingZero]
+
+Prepends a leading zero onto the time elements for consistant width
+
+* type: `Bool`
+* optional
+* default: 
+ 
+
 
 ## Contribution guide
 
