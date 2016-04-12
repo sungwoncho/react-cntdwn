@@ -35,6 +35,13 @@ export default class Countdown extends Component {
     return moment(this.props.targetDate).diff(moment(now));
   }
 
+  addLeadingZero(value) {
+    if (value.length < 2) {
+      return '0'+value 
+    }
+    return value
+  }
+
   tick() {
     this.setState({remainingTime: this.calculateRemainingTime()});
 
@@ -52,12 +59,20 @@ export default class Countdown extends Component {
   renderRemainingTime() {
     let time = milliSec(this.state.remainingTime);
     let html = [];
+    
+    let timeSeparator;
+    if (this.props.timeSeparator) {
+      timeSeparator = this.props.timeSeparator 
+    } else {
+      timeSeparator = '&nbsp;'
+    }
+    
 
     if (this.props.format.day) {
       let days = time.format(this.props.format.day)
       html.push(
         <span className="react-cntdwn-day" key="day">
-          {days}
+          {days}&nbsp;
         </span>
       );
     }
@@ -66,7 +81,7 @@ export default class Countdown extends Component {
       let hours = time.format(this.props.format.hour)
       html.push(
         <span className="react-cntdwn-hour" key="hour">
-          {hours}
+          {hours}{timeSeparator}
         </span>
       );
     }
@@ -75,7 +90,7 @@ export default class Countdown extends Component {
       let minutes = time.format(this.props.format.minute)
       html.push(
         <span className="react-cntdwn-minute" key="minute">
-          {minutes}
+          {minutes}{timeSeparator}
         </span>
       );
     }
