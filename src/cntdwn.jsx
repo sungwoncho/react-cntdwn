@@ -54,33 +54,37 @@ export default class Countdown extends Component {
     let html = [];
 
     if (this.props.format.day) {
+      let days = time.format(this.props.format.day)
       html.push(
         <span className="react-cntdwn-day" key="day">
-          {time.format(this.props.format.day)}&nbsp;
+          {days}
         </span>
       );
     }
 
     if (this.props.format.hour) {
+      let hours = time.format(this.props.format.hour)
       html.push(
         <span className="react-cntdwn-hour" key="hour">
-          {time.format(this.props.format.hour)}&nbsp;
+          {hours}
         </span>
       );
     }
 
     if (this.props.format.minute) {
+      let minutes = time.format(this.props.format.minute)
       html.push(
         <span className="react-cntdwn-minute" key="minute">
-          {time.format(this.props.format.minute)}&nbsp;
+          {minutes}
         </span>
       );
     }
 
     if (this.props.format.second) {
+      lets seconds = time.format(this.props.format.second)
       html.push(
         <span className="react-cntdwn-second" key="second">
-          {time.format(this.props.format.second)}
+          {seconds}
         </span>
       );
     }
