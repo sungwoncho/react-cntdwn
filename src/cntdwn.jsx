@@ -35,6 +35,13 @@ export default class Countdown extends Component {
     return moment(this.props.targetDate).diff(moment(now));
   }
 
+  addLeadingZero(value) {
+    if (value.length < 2) {
+      return '0'+value 
+    }
+    return value
+  }
+
   tick() {
     this.setState({remainingTime: this.calculateRemainingTime()});
 
@@ -52,35 +59,59 @@ export default class Countdown extends Component {
   renderRemainingTime() {
     let time = milliSec(this.state.remainingTime);
     let html = [];
+    
+    let timeSeparator;
+    if (this.props.timeSeparator) {
+      timeSeparator = this.props.timeSeparator 
+    } else {
+      timeSeparator = '&nbsp;'
+    }
+    
 
     if (this.props.format.day) {
+      let days = time.format(this.props.format.day)
+      if (this.props.leadingZero) {
+        days = this.addLeadingZero(days)
+      }
       html.push(
         <span className="react-cntdwn-day" key="day">
-          {time.format(this.props.format.day)}&nbsp;
+          {days}&nbsp;
         </span>
       );
     }
 
     if (this.props.format.hour) {
+      let hours = time.format(this.props.format.hour)
+      if (this.props.leadingZero) {
+        hours = this.addLeadingZero(hours)
+      }
       html.push(
         <span className="react-cntdwn-hour" key="hour">
-          {time.format(this.props.format.hour)}&nbsp;
+          {hours}{timeSeparator}
         </span>
       );
     }
 
     if (this.props.format.minute) {
+      let minutes = time.format(this.props.format.minute)
+      if (this.props.leadingZero) {
+        minutes = this.addLeadingZero(minutes)
+      }
       html.push(
         <span className="react-cntdwn-minute" key="minute">
-          {time.format(this.props.format.minute)}&nbsp;
+          {minutes}{timeSeparator}
         </span>
       );
     }
 
     if (this.props.format.second) {
+      let seconds = time.format(this.props.format.second)
+      if (this.props.leadingZero) {
+        seconds = this.addLeadingZero(seconds)
+      }
       html.push(
         <span className="react-cntdwn-second" key="second">
-          {time.format(this.props.format.second)}
+          {seconds}
         </span>
       );
     }
