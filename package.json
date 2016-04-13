@@ -1,6 +1,6 @@
 {
   "name": "react-cntdwn",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simple, customizable countdown timer for React",
   "main": "dist/cntdwn.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "url": "git+https://github.com/sungwoncho/react-cntdwn.git"
   },
   "keywords": [
+    "react-component",
+    "timer",
     "countdown",
-    "react",
-    "component",
-    "timer"
+    "react"
   ],
   "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
   "license": "MIT",
