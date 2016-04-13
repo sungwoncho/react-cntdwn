@@ -31,7 +31,6 @@
   "dependencies": {
     "millisec": "^0.2.0",
     "moment": "^2.10.6",
-    "pretty-ms": "^2.1.0",
     "react": "^0.14.0 || ^15.0.0"
   }
 }
