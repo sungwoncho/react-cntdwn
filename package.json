@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "millisec": "^0.2.0",
-    "moment": "^2.10.6",
+    "moment": "^2.12.0",
     "react": "^0.14.0 || ^15.0.0"
   }
 }
