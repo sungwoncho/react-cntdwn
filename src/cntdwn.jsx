@@ -60,14 +60,6 @@ export default class Countdown extends Component {
     let time = milliSec(this.state.remainingTime);
     let html = [];
     
-    let timeSeparator;
-    if (this.props.timeSeparator) {
-      timeSeparator = this.props.timeSeparator 
-    } else {
-      timeSeparator = '&nbsp;'
-    }
-    
-
     if (this.props.format.day) {
       let days = time.format(this.props.format.day)
       if (this.props.leadingZero) {
@@ -87,7 +79,7 @@ export default class Countdown extends Component {
       }
       html.push(
         <span className="react-cntdwn-hour" key="hour">
-          {hours}{timeSeparator}
+          {hours}{this.props.timeSeparator}
         </span>
       );
     }
@@ -99,7 +91,7 @@ export default class Countdown extends Component {
       }
       html.push(
         <span className="react-cntdwn-minute" key="minute">
-          {minutes}{timeSeparator}
+          {minutes}{this.props.timeSeparator}
         </span>
       );
     }
@@ -136,7 +128,9 @@ Countdown.propTypes = {
   interval: PropTypes.number,
   startDelay: PropTypes.number,
   onFinished: PropTypes.func,
-  format: PropTypes.object
+  format: PropTypes.object, 
+  timeSeparator: PropTypes.string,
+  leadingZero: PropTypes.bool
 };
 
 Countdown.defaultProps = {
@@ -146,7 +140,9 @@ Countdown.defaultProps = {
     hour: 'HH',
     minute: 'MM',
     second: 'SS'
-  }
+  }, 
+  timeSeparator: ' ',
+  leadingZero: false
 };
 
 module.exports = Countdown;
