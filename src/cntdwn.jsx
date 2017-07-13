@@ -1,133 +1,135 @@
-import React, {Component, PropTypes} from 'react';
-import moment from 'moment';
-import milliSec from 'millisec';
+import React, {Component, PropTypes} from 'react'
+import moment from 'moment'
 
-const NOT_STARTED = 1;
-const STARTED = 2;
-const FINISHED = 3;
+const COUNTDOWN_NOT_STARTED = 1
+const COUNTDOWN_STARTED = 2
+const COUNTDOWN_FINISHED = 3
 
 export default class Countdown extends Component {
-  constructor(props) {
-    super(props);
+
+  constructor (props) {
+    super(props)
     this.state = {
       remainingTime: 0,
-      status: NOT_STARTED
-    };
+      status: COUNTDOWN_NOT_STARTED,
+      intervalId: null
+    }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     setTimeout(() => {
-      this.tick();
-      this.setState({status: STARTED});
+      let timer = setInterval(() => {
+        this.tick()
+      }, this.props.interval)
 
-      this.timer = setInterval(() => {
-        this.tick();
-      }, this.props.interval);
-    }, this.props.startDelay);
+      this.setState({
+        status: COUNTDOWN_STARTED,
+        intervalId: timer
+      })
+
+      this.tick()
+    }, this.props.startDelay)
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
+  componentWillUnmount = () => {
+    clearInterval(this.state.intervalId)
   }
 
-  calculateRemainingTime() {
-    let now = moment().toDate();
-    return moment(this.props.targetDate).diff(moment(now));
+  calculateRemainingTime = () => {
+    return -1 * moment().diff(this.props.targetDate)
   }
 
-  addLeadingZero(value) {
-    if (value.length < 2) {
-      return '0'+value 
+  addLeadingZero = (value) => {
+    if (value < 10) {
+      return '0' + value.toString()
     }
     return value
   }
 
-  tick() {
-    this.setState({remainingTime: this.calculateRemainingTime()});
+  tick = () => {
+    this.setState({
+      remainingTime: this.calculateRemainingTime()
+    })
 
     if (this.state.remainingTime <= 0) {
-      this.setState({status: FINISHED});
+      this.setState({
+        status: COUNTDOWN_FINISHED
+      })
 
       if (this.props.onFinished) {
-        this.props.onFinished();
+        this.props.onFinished()
       }
-
-      clearInterval(this.timer);
+      clearInterval(this.state.intervalId)
     }
   }
 
-  renderRemainingTime() {
-    let time = milliSec(this.state.remainingTime);
-    let html = [];
-    
-    let timeSeparator;
-    if (this.props.timeSeparator) {
-      timeSeparator = this.props.timeSeparator 
-    } else {
-      timeSeparator = '&nbsp;'
-    }
-    
+  renderRemainingTime = () => {
+    let html = []
+    let { format, leadingZero, timeSeparator } = this.props
+    let { remainingTime } = this.state
 
-    if (this.props.format.day) {
-      let days = time.format(this.props.format.day)
-      if (this.props.leadingZero) {
+    if (format.day) {
+      let days = moment.duration(remainingTime).get('days')
+      if (leadingZero) {
         days = this.addLeadingZero(days)
       }
       html.push(
-        <span className="react-cntdwn-day" key="day">
+        <span className='react-cntdwn-day' key='day'>
           {days}&nbsp;
         </span>
-      );
+      )
     }
 
-    if (this.props.format.hour) {
-      let hours = time.format(this.props.format.hour)
-      if (this.props.leadingZero) {
+    if (format.hour) {
+      let hours = moment.duration(remainingTime).get('hours')
+      if (leadingZero) {
         hours = this.addLeadingZero(hours)
       }
       html.push(
-        <span className="react-cntdwn-hour" key="hour">
+        <span className='react-cntdwn-hour' key='hour'>
           {hours}{timeSeparator}
         </span>
-      );
+      )
     }
 
-    if (this.props.format.minute) {
-      let minutes = time.format(this.props.format.minute)
-      if (this.props.leadingZero) {
+    if (format.minute) {
+      let minutes = moment.duration(remainingTime).get('minutes')
+      if (leadingZero) {
         minutes = this.addLeadingZero(minutes)
       }
       html.push(
-        <span className="react-cntdwn-minute" key="minute">
+        <span className='react-cntdwn-minute' key='minute'>
           {minutes}{timeSeparator}
         </span>
-      );
+      )
     }
 
-    if (this.props.format.second) {
-      let seconds = time.format(this.props.format.second)
-      if (this.props.leadingZero) {
+    if (format.second) {
+      let seconds = moment.duration(remainingTime).get('seconds')
+      if (leadingZero) {
         seconds = this.addLeadingZero(seconds)
       }
       html.push(
-        <span className="react-cntdwn-second" key="second">
+        <span className='react-cntdwn-second' key='second'>
           {seconds}
         </span>
-      );
+      )
     }
 
-    return html;
+    return html
   }
 
-  render() {
-    if (this.state.status === NOT_STARTED) {
-      return <span></span>;
+  render = () => {
+    if (this.state.status === COUNTDOWN_NOT_STARTED) {
+      return (
+        <span></span>
+      )
     }
     return (
-      <div className="react-cntdwn-timer">
+      <div className='react-cntdwn-timer'>
         {this.renderRemainingTime()}
       </div>
-    );
+    )
   }
 }
 
@@ -136,8 +138,10 @@ Countdown.propTypes = {
   interval: PropTypes.number,
   startDelay: PropTypes.number,
   onFinished: PropTypes.func,
-  format: PropTypes.object
-};
+  format: PropTypes.object,
+  timeSeparator: PropTypes.string,
+  leadingZero: PropTypes.bool
+}
 
 Countdown.defaultProps = {
   interval: 1000,
@@ -146,7 +150,7 @@ Countdown.defaultProps = {
     hour: 'HH',
     minute: 'MM',
     second: 'SS'
-  }
-};
-
-module.exports = Countdown;
+  },
+  timeSeparator: ' ',
+  leadingZero: false
+}
