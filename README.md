@@ -15,7 +15,7 @@ If you are using yarn,
 Below is an example of how this component might be used.
 
 ```js
-import Countdown from require('react-cntdwn');
+import Countdown fro 'react-cntdwn';
 
 const handleFinish = function () {
   console.log('Skynet has become self-aware!');
