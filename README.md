@@ -6,22 +6,29 @@ A simple React component that displays a countdown timer which is customizable.
 
     npm install --save react-cntdwn
 
+If you are using yarn,
+
+    yarn add react-cntdwn
+
 ## Usage example
 
 Below is an example of how this component might be used.
 
 ```js
-var Countdown = require('react-cntdwn');
-var handleFinish = function () {
+import Countdown from require('react-cntdwn');
+
+const handleFinish = function () {
   console.log('Skynet has become self-aware!');
 }
 
-<Countdown targetDate={new Date('August 29, 1997')}
-           startDelay={2000}
-           interval={1000}
-           timeSeparator={':'}
-           leadingZero
-           onFinished={handleFinish} />
+<Countdown
+  targetDate={new Date('August 29, 1997')}
+  startDelay={2000}
+  interval={1000}
+  timeSeparator={':'}
+  leadingZero
+  onFinished={handleFinish}
+/>
 ```
 
 ## Props

@@ -6,7 +6,6 @@ const COUNTDOWN_STARTED = 2
 const COUNTDOWN_FINISHED = 3
 
 export default class Countdown extends Component {
-
   constructor (props) {
     super(props)
     this.state = {
