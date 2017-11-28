@@ -15,7 +15,7 @@ If you are using yarn,
 Below is an example of how this component might be used.
 
 ```js
-import Countdown fro 'react-cntdwn';
+import Countdown from 'react-cntdwn';
 
 const handleFinish = function () {
   console.log('Skynet has become self-aware!');
@@ -91,6 +91,14 @@ The callback function to be called when the countdown ends.
 ### [timeSeparator]
 
 The string used to separate the different parts of the time
+
+* type: `String`
+* optional
+* default: `&nbsp;`
+
+### [daySeparator]
+
+The string used to separate day from time
 
 * type: `String`
 * optional
