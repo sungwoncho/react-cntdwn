@@ -70,48 +70,65 @@ export default class Countdown extends Component {
 
     if (format.day) {
       let days = moment.duration(remainingTime).get('days')
+
       if (leadingZero) {
         days = this.addLeadingZero(days)
       }
+
+      let output = format.day.replace('dd', days)
+
       html.push(
         <span className='react-cntdwn-day' key='day'>
-          {days}&nbsp;
+          {output}&nbsp;
         </span>
       )
     }
 
     if (format.hour) {
       let hours = moment.duration(remainingTime).get('hours')
+
       if (leadingZero) {
         hours = this.addLeadingZero(hours)
       }
+
+      let output = format.hour.replace('hh', hours)
+
       html.push(
         <span className='react-cntdwn-hour' key='hour'>
-          {hours}{timeSeparator}
+          {output}{timeSeparator}
         </span>
       )
     }
 
     if (format.minute) {
       let minutes = moment.duration(remainingTime).get('minutes')
+
       if (leadingZero) {
         minutes = this.addLeadingZero(minutes)
+
       }
+
+      let output = format.minute.replace('mm', minutes)
+
       html.push(
         <span className='react-cntdwn-minute' key='minute'>
-          {minutes}{timeSeparator}
+          {output}{timeSeparator}
         </span>
       )
     }
 
     if (format.second) {
       let seconds = moment.duration(remainingTime).get('seconds')
+
       if (leadingZero) {
         seconds = this.addLeadingZero(seconds)
       }
+
+      let output = format.second.replace('ss', seconds)
+
       html.push(
         <span className='react-cntdwn-second' key='second'>
-          {seconds}
+          {output}
         </span>
       )
     }
