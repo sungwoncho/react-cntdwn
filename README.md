@@ -95,6 +95,14 @@ The string used to separate the different parts of the time
 * type: `String`
 * optional
 * default: `&nbsp;`
+
+### [daySeparator]
+
+The string used to separate day from time
+
+* type: `String`
+* optional
+* default: `&nbsp;`
  
 ### [leadingZero]
 
